@@ -12,7 +12,6 @@ let cfgForm = reactive({
 
 // 登录
 const auth =(form: any)=> {
-    console.log(form);
     s3Login(form).then((res: any) => {
         if (res) {
             localStorage.setItem('bz-view-token', JSON.stringify(form))
