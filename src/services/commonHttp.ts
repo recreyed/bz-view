@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const requestCom = axios.create({
     // API 请求的默认前缀
-    baseURL: '/common',
+    baseURL: process.env.NODE_ENV == "production" ? "/" : '/common',
     timeout: 12000 // 请求超时时间
 })
 

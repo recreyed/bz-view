@@ -9,12 +9,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/noAuth': {
-        target: 'https://bz-view-node-r9xn8gh7e-recreyed.vercel.app/',
+        target: 'http://127.0.0.1:3000/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/noAuth/, ''),
       },
       '/common': {
-        target: 'https://bz-view-node-r9xn8gh7e-recreyed.vercel.app/',
+        target: 'http://127.0.0.1:3000/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/common/, ''),
       },

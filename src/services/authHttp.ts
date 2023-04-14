@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const requestAuth = axios.create({
     // API 请求的默认前缀
-    baseURL: '/noAuth',
+    baseURL: process.env.NODE_ENV == "production" ? "/" : '/noAuth',
     timeout: 12000 // 请求超时时间
 })
 
