@@ -10,6 +10,7 @@ let areaFlag = ref(0)
 const receiveAreaFlag = (data:any)=>{
   areaFlag.value = data
 }
+
 </script>
 
 <template>
