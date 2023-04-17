@@ -1,24 +1,12 @@
 {
-  "name": "serve",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {},
-  "dependencies": {
-    "@vercel/node": "^2.10.3",
-    "axios": "^1.3.5",
-    "body-parser": "^1.19.2",
-    "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
-    "crypto-js": "^4.1.1",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.1",
-    "multer": "^1.4.4"
+  "name": "blazeb2-vercel",
+  "version": "1.5.2",
+  "description": "📷基于 backBlazeb2 API & ⚡ cloudflare 开发的具有 CDN 加速功能的图床工具",
+  "author": "rr210 <author> (https://github.com/rr210)",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rr210/blazeB2.git"
   },
-  "optionalDependencies": {
-    "bufferutil": "^4.0.6",
-    "utf-8-validate": "^5.0.9"
-  }
+  "homepage": "https://blazeb2.js.org"
 }
