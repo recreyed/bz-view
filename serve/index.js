@@ -23,6 +23,7 @@ var imgListRoute = require('./routes/imgList');//图片列表
 var uploadRoute = require('./routes/upload');//上传
 var delRoute = require('./routes/delPic');//删除
 
+
 // 激活
 app.use(cors())//跨域中间件
 app.use('/auth',authRoute);//登录
