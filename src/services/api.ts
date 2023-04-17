@@ -1,14 +1,23 @@
 import requestAuth from './authHttp';
 import requestCom from './commonHttp';
 
-// 登录
+const AUTH_URL = '/auth'
+const UPLOAD_URL = '/upload'
+const LIST_URL = '/list'
+const IMG_ITEM_URL = '/img'
+// 登录授权接口
 export function s3Login(auth: any) {
-    return requestAuth({
-        url: '/auth',
-        method: 'post',
-        data: { applicationKeyId: auth.applicationKeyId, applicationKey: auth.applicationKey }
-    })
+    return requestAuth.post(AUTH_URL, { applicationKeyId: auth.applicationKeyId, applicationKey: auth.applicationKey })
 }
+
+// 登录
+// export function s3Login(auth: any) {
+//     return requestAuth({
+//         url: '/auth',
+//         method: 'post',
+//         data: { applicationKeyId: auth.applicationKeyId, applicationKey: auth.applicationKey }
+//     })
+// }
 // 查看文件列表
 export function s3Imglist(bucket: any) {
     return requestCom({
@@ -35,6 +44,6 @@ export function s3DelImg(file: any) {
     return requestCom({
         url: '/delPic',
         method: 'post',
-        data: { fileName: file.fileName, fileId: file.fileId, apiUrl:file.apiUrl }
+        data: { fileName: file.fileName, fileId: file.fileId, apiUrl: file.apiUrl }
     })
 }
