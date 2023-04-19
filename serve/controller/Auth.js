@@ -16,6 +16,8 @@ const getAuth = async (req, res, next) => {
         }).then(resInfo => {
             sendJson(res, 200, "登录成功！", { uploadInfo: resInfo, authInfo: response })
         })
+    }).catch(response=>{
+        sendJson(res, 500, "登录失败0.o?", {})
     })
 }
 

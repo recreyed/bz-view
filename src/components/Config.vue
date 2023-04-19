@@ -6,7 +6,7 @@ import { useMessage } from 'naive-ui'
 const message = useMessage()
 
 
-let cfgForm = reactive({
+let cfgForm = ref({
     applicationKeyId: '',
     applicationKey: '',
     customUrl: '',
@@ -29,7 +29,7 @@ const auth =(form: any)=> {
 
 
 if (localStorage.getItem('bz-view-token')) {
-    cfgForm = JSON.parse(<string>localStorage.getItem('bz-view-token'))
+    cfgForm.value = JSON.parse(<string>localStorage.getItem('bz-view-token'))
 }
 </script>
 

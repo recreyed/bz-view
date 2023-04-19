@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { reactive, ref, computed } from 'vue'
-import { s3Login, s3Imglist, s3DelImg, uploadFile } from '@/services/api'
+import { s3Imglist, s3DelImg } from '@/services/api'
+import { useMessage } from 'naive-ui'
+
+const message = useMessage()
 
 let imgList = ref<any>([])
 let picIdList = ref<any>([])
@@ -14,8 +17,11 @@ const delPic = () => {
     imgList.value.filter((item: any) => picIdList.value.includes(item.fileId)).forEach((file: any) => {
         s3DelImg({ fileName: file.fileName, fileId: file.fileId, apiUrl: JSON.parse(bucketInfo).apiUrl }).then((res:any) => {
             if (res.state == 200) {
+                message.success(res.message)
                 getImgList()
-            }else{}
+            }else{
+                message.error(res.message)
+            }
         })
     });
 

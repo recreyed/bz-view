@@ -8,7 +8,9 @@ const getDelPic = async (req, res, next) => {
         headers: { 'Authorization': req.headers.authorization },
         data: { fileName: req.body.fileName, fileId: req.body.fileId }
     }).then(response => {
-        sendJson(res, 200, "操作成功", response)
+        sendJson(res, 200, "删除成功", response)
+    }).catch(response=>{
+        sendJson(res, 500, "删除失败0.o?", {})
     })
 }
 

@@ -9,6 +9,8 @@ const getImgList = async (req, res, next) => {
         data: { bucketId: req.body.bucketId }
     }).then(response => {
         sendJson(res, 200, "操作成功", response)
+    }).catch(response=>{
+        sendJson(res, 500, "获取列表失败0.o?", {})
     })
 }
 
