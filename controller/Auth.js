@@ -14,7 +14,7 @@ const getAuth = async (req, res, next) => {
             headers: { 'Authorization': response.authorizationToken },
             data: { bucketId: response.allowed.bucketId }
         }).then(resInfo => {
-            sendJson(res, 200, "操作成功", { uploadInfo: resInfo, authInfo: response })
+            sendJson(res, 200, "登录成功！", { uploadInfo: resInfo, authInfo: response })
         })
     })
 }
