@@ -10,12 +10,6 @@ const requestAuth = axios.create({
 const errorHandler = (error) => {
     if (error.response) {
         const data = error.response.data
-        if (error.response.status === 403) {
-            console.log('Forbidden');
-        }
-        if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
-            console.log('Unauthorized');
-        }
     }
     return Promise.reject(error)
 }

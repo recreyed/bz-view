@@ -22,7 +22,9 @@ const getUpload = async (req, res, next) => {
         },
         data: req.file.buffer
     }).then(response => {
-        sendJson(res, 200, "操作成功", response)
+        sendJson(res, 200, "上传成功！", response)
+    }).catch(response=>{
+        sendJson(res, 500, "上传失败0.o?", {})
     })
 }
 
