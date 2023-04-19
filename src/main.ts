@@ -17,11 +17,12 @@ import {
     NSpace,
     NMessageProvider,
     NList,
-    NListItem
+    NListItem,
+    NSpin
 } from 'naive-ui'
 const naive = create({
     components: [NButton, NForm, NFormItem, NInput, NUpload, NImage, NUploadDragger, NIcon, NCheckbox,
-        NCheckboxGroup, NSpace, NMessageProvider, NList, NListItem]
+        NCheckboxGroup, NSpace, NMessageProvider, NList, NListItem,NSpin]
 })
 
 import App from './App.vue'

@@ -2,6 +2,9 @@
 import { reactive, ref, computed } from 'vue'
 import { ArchiveOutline } from '@vicons/ionicons5'
 import { uploadFile } from '@/services/api'
+import { useMessage } from 'naive-ui'
+
+const message = useMessage()
 
 
 let fileList = ref<any[]>([])
@@ -16,27 +19,40 @@ const handleUploadChange = (data: any) => {
     fileList.value = data.fileList
 }
 // 清空
-const emptyList = ()=>{
+const emptyList = () => {
     fileList.value = []
 }
 // 上传
 const uploadArray = () => {
-    fileList.value.forEach((item: any) => {
-        upload(item)
-    })
+    fileList.value.reduce((previousValue, currentValue) => {
+        return previousValue.then(() => {
+            return upload(currentValue)
+        }).catch(() => {
+            return upload(currentValue)
+        })
+    }, upload(fileList.value[0]))
 }
 const upload = (fileItem: any) => {
-    let file = fileItem.file;
-    let uploadBody = {
-        uploadUrl: JSON.parse(<string>localStorage.getItem('bz-view-uploadInfo')).uploadUrl,
-        token: JSON.parse(<string>localStorage.getItem('bz-view-uploadInfo')).authorizationToken,
-        name: file.name,
-    };
-    const fileData = new FormData()
-    fileData.append("file_", file)
+    return new Promise<void>((resolve, reject) => {
+        let file = fileItem.file;
+        let uploadBody = {
+            uploadUrl: JSON.parse(<string>localStorage.getItem('bz-view-uploadInfo')).uploadUrl,
+            token: JSON.parse(<string>localStorage.getItem('bz-view-uploadInfo')).authorizationToken,
+            name: file.name,
+        };
+        const fileData = new FormData()
+        fileData.append("file_", file)
 
-
-    uploadFile(fileData, uploadBody).then(res => {
+        fileItem.uploadStatus = 2
+        uploadFile(fileData, uploadBody).then((res: any) => {
+            if (res.state == 200) {
+                fileItem.uploadStatus = 1
+                resolve()
+            } else {
+                fileItem.ploadStatus = 0
+                reject()
+            }
+        })
     })
 }
 </script>
@@ -61,6 +77,13 @@ const upload = (fileItem: any) => {
                     <img :src="picBlob(item)" class="file-list-pic">
                 </template>
                 <div>{{ item.name }}</div>
+                <span v-if="item.uploadStatus == 1 || item.uploadStatus == 0">
+                    {{ item.uploadStatus == 1 ? "上传成功" : "上传失败0.o?" }}
+                </span>
+                <span v-else-if="item.uploadStatus == 2">
+                    <n-spin size="small" />
+                </span>
+
                 <template #suffix>
                     <n-button>删除</n-button>
                 </template>
@@ -110,6 +133,7 @@ const upload = (fileItem: any) => {
         margin-right: 30px;
     }
 }
+
 @media screen and (max-width:800px) {
     .upload-wrap {
         margin: 20px 25px;
