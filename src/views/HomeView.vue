@@ -7,7 +7,7 @@ import Config from '../components/Config.vue'
 import { reactive, ref, computed } from 'vue'
 
 let areaFlag = ref(0)
-const receiveAreaFlag = (data:any)=>{
+const receiveAreaFlag = (data: any) => {
   areaFlag.value = data
 }
 
@@ -23,7 +23,14 @@ const receiveAreaFlag = (data:any)=>{
 </template>
 
 <style lang="less" scoped>
-.main-wrap{
+.main-wrap {
   display: flex;
+  align-items: stretch;
+}
+
+@media screen and (max-width:800px) {
+  .main-wrap {
+    flex-flow: column nowrap;
+  }
 }
 </style>

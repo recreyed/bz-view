@@ -85,4 +85,9 @@ getImgList()
         }
     }
 }
+@media screen and (max-width:800px) {
+    .gallery-wrap {
+        margin: 20px 25px;
+    }
+}
 </style>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { s3Login, s3Imglist, uploadFile } from '@/services/api'
+import { s3Login } from '@/services/api'
 import { reactive, ref, computed } from 'vue'
+import { useMessage } from 'naive-ui'
+
+const message = useMessage()
 
 
 let cfgForm = reactive({
@@ -13,12 +16,13 @@ let cfgForm = reactive({
 // 登录
 const auth =(form: any)=> {
     s3Login(form).then((res: any) => {
-        if (res) {
+        if (res.state == 200) {
+            message.success(res.message)
             localStorage.setItem('bz-view-token', JSON.stringify(form))
             localStorage.setItem('bz-view-authInfo', JSON.stringify(res.data.authInfo))
             localStorage.setItem('bz-view-uploadInfo', JSON.stringify(res.data.uploadInfo))
         } else {
-            
+            message.error(res.message)
         }
     })
 }
@@ -56,5 +60,10 @@ if (localStorage.getItem('bz-view-token')) {
     border-radius: 10px;
     height: calc(100vh - 40px);
     background-color: #fff;
+}
+@media screen and (max-width:800px) {
+    .config-wrap {
+        margin: 20px 25px;
+    }
 }
 </style>

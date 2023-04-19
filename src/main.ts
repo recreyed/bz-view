@@ -14,11 +14,14 @@ import {
     NIcon,
     NCheckbox,
     NCheckboxGroup,
-    NSpace
+    NSpace,
+    NMessageProvider,
+    NList,
+    NListItem
 } from 'naive-ui'
 const naive = create({
     components: [NButton, NForm, NFormItem, NInput, NUpload, NImage, NUploadDragger, NIcon, NCheckbox,
-        NCheckboxGroup, NSpace]
+        NCheckboxGroup, NSpace, NMessageProvider, NList, NListItem]
 })
 
 import App from './App.vue'

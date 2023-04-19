@@ -2,7 +2,7 @@
 
 const emit = defineEmits(['changeAreaFlag'])
 
-const changeArea = (flag:any)=>{
+const changeArea = (flag: any) => {
     emit('changeAreaFlag', flag)
 }
 </script>
@@ -25,14 +25,16 @@ const changeArea = (flag:any)=>{
     margin: 20px 25px;
     width: 5%;
     min-width: 70px;
-    height: calc(100vh - 40px);
+    min-height: calc(100vh - 40px);
     background-color: #fff;
     border-radius: 10px;
-    .bar-icon{
+
+    .bar-icon {
         width: 100%;
         padding-bottom: 100%;
         position: relative;
-        div{
+
+        div {
             width: 100%;
             height: 100%;
             position: absolute;
@@ -41,6 +43,41 @@ const changeArea = (flag:any)=>{
             justify-content: center;
             border-bottom: 1px solid #d8e3e7;
             cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width:800px) {
+    .bar-wrap {
+        display: flex;
+        margin: 20px 25px 0 25px;
+        min-width: 0;
+        min-height: 0;
+        width: auto;
+        height: 70px;
+        border-radius: 10px;
+
+        .bar-icon {
+            width: calc(100% / 3);
+            height: 0;
+            padding-bottom: 70px;
+            position: relative;
+            border-right: 1px solid #d8e3e7;
+            div {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-bottom: none;
+                cursor: pointer;
+            }
+        }
+        .bar-icon:nth-of-type(3){
+            border-right: none;
         }
     }
 }
