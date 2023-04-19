@@ -58,7 +58,7 @@ if (localStorage.getItem('bz-view-token')) {
     margin: 20px 25px 20px 0;
     padding: 25px;
     border-radius: 10px;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 90px);
     background-color: #fff;
 }
 @media screen and (max-width:800px) {

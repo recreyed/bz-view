@@ -81,7 +81,7 @@ const upload = (fileItem: any) => {
     margin: 20px 25px 20px 0;
     padding-bottom: 20px;
     border-radius: 10px;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 60px);
     background-color: #fff;
 
     .upload-area {

@@ -25,7 +25,6 @@ const changeArea = (flag: any) => {
     margin: 20px 25px;
     width: 5%;
     min-width: 70px;
-    min-height: calc(100vh - 40px);
     background-color: #fff;
     border-radius: 10px;
 
