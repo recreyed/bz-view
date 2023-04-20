@@ -2,9 +2,6 @@
 import { reactive, ref, computed } from 'vue'
 import { ArchiveOutline } from '@vicons/ionicons5'
 import { uploadFile } from '@/services/api'
-import { useMessage } from 'naive-ui'
-
-const message = useMessage()
 
 
 let fileList = ref<any[]>([])
@@ -37,7 +34,7 @@ const upload = (fileItem: any) => {
         let uploadBody = {
             uploadUrl: JSON.parse(<string>localStorage.getItem('bz-view-uploadInfo')).uploadUrl,
             token: JSON.parse(<string>localStorage.getItem('bz-view-uploadInfo')).authorizationToken,
-            name: file.name,
+            suffix: file.type.split("/")[1],
         };
         const fileData = new FormData()
         fileData.append("file_", file)

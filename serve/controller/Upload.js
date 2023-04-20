@@ -7,13 +7,12 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage:storage })
 
 const getUpload = async (req, res, next) => {
-    // console.log(sha1(req.file.buffer).toString());
     requestAuth({
         url: `${req.headers["x-bz-info-uploadurl"]}`,
         method: 'post',
         headers: { 
             'Authorization': req.headers["authorization"],
-            'X-Bz-File-Name': req.headers["x-bz-file-name"],
+            'X-Bz-File-Name': `${Date.now()}.${req.headers["suffix"]}`,
             'Content-Type': "b2/x-auto",
             'X-Bz-Content-Sha1': 'do_not_verify',
             // 'X-Bz-Content-Sha1': sha1(req.file.buffer).toString(),

@@ -19,13 +19,14 @@ export function s3Imglist(bucket: any) {
 }
 // 上传文件
 export function uploadFile(file: any, uploadBody: any) {
+    console.log(uploadBody);
     return requestAuth({
         url: '/upload',
         method: 'post',
         headers: {
             'Authorization': uploadBody.token,
-            'X-Bz-File-Name': uploadBody.name,
             'X-Bz-Info-UploadUrl': uploadBody.uploadUrl,
+            'suffix': uploadBody.suffix,
         },
         data: file
     })
