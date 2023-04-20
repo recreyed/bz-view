@@ -15,7 +15,6 @@ const picBlob = (item: any) => {
 // 选择文件
 const handleUploadChange = (data: any) => {
     console.log(data);
-
     fileList.value = data.fileList
 }
 // 清空
@@ -30,7 +29,7 @@ const uploadArray = () => {
         }).catch(() => {
             return upload(currentValue)
         })
-    }, upload(fileList.value[0]))
+    }, Promise.resolve())
 }
 const upload = (fileItem: any) => {
     return new Promise<void>((resolve, reject) => {

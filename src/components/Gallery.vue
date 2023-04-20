@@ -13,28 +13,35 @@ const customUrl = computed(() => {
 // 图片列表
 let bucketInfo = <string>localStorage.getItem('bz-view-authInfo')
 // 删除图片
-const delPic = () => {
-    imgList.value.filter((item: any) => picIdList.value.includes(item.fileId)).forEach((file: any) => {
-        s3DelImg({ fileName: file.fileName, fileId: file.fileId, apiUrl: JSON.parse(bucketInfo).apiUrl }).then((res:any) => {
+const delPic = (file: any) => {
+    return new Promise<void>((resolve, reject) => {
+        s3DelImg({ fileName: file.fileName, fileId: file.fileId, apiUrl: JSON.parse(bucketInfo).apiUrl }).then((res: any) => {
             if (res.state == 200) {
                 message.success(res.message)
-                getImgList()
-            }else{
+            } else {
                 message.error(res.message)
             }
+            resolve()
         })
-    });
-
+    })
 };
+const delList = () => {
+    let delList = imgList.value.filter((item: any) => picIdList.value.includes(item.fileId))
+    let proResList =  delList.map((item: any) => {
+        delPic(item)
+    })
+    Promise.all(proResList).then(()=>{
+        getImgList()
+    })
+}
 // 图片列表
 const getImgList = () => {
     if (bucketInfo) {
         s3Imglist({ bucketId: JSON.parse(bucketInfo).allowed.bucketId, apiUrl: JSON.parse(bucketInfo).apiUrl }).then((res: any) => {
             if (res) {
-                console.log(res);
                 imgList.value = res.data.files
             } else {
-
+                message.error(res.message)
             }
         })
     }
@@ -46,7 +53,7 @@ getImgList()
 
 <template>
     <div class="gallery-wrap">
-        <n-button @click="delPic">删除</n-button>
+        <n-button @click="delList">删除</n-button>
         <n-checkbox-group v-model:value="picIdList">
             <div class="pic-wrap">
                 <n-space>
@@ -91,6 +98,7 @@ getImgList()
         }
     }
 }
+
 @media screen and (max-width:800px) {
     .gallery-wrap {
         margin: 20px 25px;
