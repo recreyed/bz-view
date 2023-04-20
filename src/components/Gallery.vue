@@ -27,10 +27,10 @@ const delPic = (file: any) => {
 };
 const delList = () => {
     let delList = imgList.value.filter((item: any) => picIdList.value.includes(item.fileId))
-    let proResList =  delList.map((item: any) => {
+    let proResList = delList.map((item: any) => {
         delPic(item)
     })
-    Promise.all(proResList).then(()=>{
+    Promise.all(proResList).then(() => {
         getImgList()
     })
 }
@@ -54,18 +54,20 @@ getImgList()
 <template>
     <div class="gallery-wrap">
         <n-button @click="delList">删除</n-button>
-        <n-checkbox-group v-model:value="picIdList">
-            <div class="pic-wrap">
-                <n-space>
-                    <div class="pic-item-wrap" v-for="item, index in imgList" :key="index">
-                        <n-checkbox class="pic-check" :value="item.fileId" />
-                        <n-image class="image-item" width="180" height="120" lazy object-fit="cover"
-                            :src="`${customUrl}${item.fileName}`">
-                        </n-image>
-                    </div>
-                </n-space>
-            </div>
-        </n-checkbox-group>
+        <n-spin :show="imgList.length == 0">
+            <n-checkbox-group v-model:value="picIdList">
+                <div class="pic-wrap">
+                    <n-space>
+                        <div class="pic-item-wrap" v-for="item, index in imgList" :key="index">
+                            <n-checkbox class="pic-check" :value="item.fileId" />
+                            <n-image class="image-item" width="180" height="120" lazy object-fit="cover"
+                                :src="`${customUrl}${item.fileName}`">
+                            </n-image>
+                        </div>
+                    </n-space>
+                </div>
+            </n-checkbox-group>
+        </n-spin>
     </div>
 </template>
 <style lang="less" scoped>
