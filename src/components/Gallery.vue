@@ -60,7 +60,7 @@ getImgList()
         <n-spin :show="spinLoading">
             <n-checkbox-group v-model:value="picIdList">
                 <div class="pic-wrap">
-                    <n-space>
+                    <n-space class="gap-wrap">
                         <div class="pic-item-wrap" v-for="item, index in imgList" :key="index">
                             <n-checkbox class="pic-check" :value="item.fileId" />
                             <n-image class="image-item" lazy :src="`${customUrl}${item.fileName}`">
@@ -87,6 +87,28 @@ getImgList()
         overflow: auto;
         max-height: calc(100vh - 244px);
 
+        ::v-deep .gap-wrap {
+            width: 100%;
+
+            &>div {
+                width: 13%;
+            }
+        }
+
+        ::v-deep .image-item {
+            width: 100%;
+            padding-bottom: 60%;
+            height: 0;
+            position: relative;
+
+            img {
+                position: absolute;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+        }
+
         .pic-item-wrap {
             position: relative;
             border: 1px solid #d8e3e7;
@@ -100,12 +122,7 @@ getImgList()
                 padding: 15px;
                 top: -18px;
                 left: -15px;
-            }
-
-            ::v-deep .image-item img {
-                width: 170px;
-                height: 120px;
-                object-fit: cover !important;
+                z-index: 9;
             }
         }
     }
@@ -116,9 +133,8 @@ getImgList()
         margin: 20px 25px;
     }
 
-    ::v-deep .image-item img {
-        width: 7.7rem !important;
-        height: 5rem !important;
+    ::v-deep.gap-wrap>div {
+        width: calc(50% - 12px) !important;
     }
 }
 </style>
