@@ -5,7 +5,6 @@ const cors = require('cors');//跨域
 const bodyParser = require('body-parser')//post
 
 
-
 // 创建app对象
 var app = express();
 require(process.cwd() + '/common/utils.js')
@@ -49,3 +48,6 @@ app.use(function (err, req, res, next) {
 app.listen(3131,()=>{
   console.log('服务器启动成功')
 })
+// key
+// K004h8lJwbUdsl
+// 9JTUHvLASiwMO2f3w
