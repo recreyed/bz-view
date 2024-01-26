@@ -12,7 +12,7 @@ require(process.cwd() + '/common/utils.js')
 // ************************************************中间件
 app.use(bodyParser.json({limit:'5mb'}));
 app.use(bodyParser.urlencoded({ extended:true,limit:'5mb' }));
-app.use(express.static(path.join(__dirname, 'public')));//托管静态文件
+app.use(express.static(path.join(__dirname, 'public/dist')));//托管静态文件
 
 
 // ************************************************路由配置
