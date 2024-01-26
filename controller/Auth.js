@@ -3,13 +3,13 @@ const { requestAuth } = require(process.cwd() + "/common/axios")
 
 const getAuth = async (req, res, next) => {
     requestAuth({
-        url: 'https://api.backblazeb2.com/b2api/v2/b2_authorize_account',
+        url: 'https://api.backblazeb2.com/b2api/v3/b2_authorize_account',
         method: 'post',
         headers: { 'Authorization': 'Basic ' + Buffer.from(`${req.body.applicationKeyId}:${req.body.applicationKey}`).toString('base64') },
         data: {}
     }).then(response => {
         requestAuth({
-            url: `${response.apiUrl}/b2api/v2/b2_get_upload_url`,
+            url: `${response.apiUrl}/b2api/v3/b2_get_upload_url`,
             method: 'post',
             headers: { 'Authorization': response.authorizationToken },
             data: { bucketId: response.allowed.bucketId }

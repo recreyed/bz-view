@@ -2,7 +2,7 @@ var axios = require('axios');
 
 const requestAuth = axios.create({
     // API 请求的默认前缀
-    // baseURL: '/noAuth/b2api/v2',
+    // baseURL: '/noAuth/b2api/v3',
     timeout: 12000 // 请求超时时间
 })
 
