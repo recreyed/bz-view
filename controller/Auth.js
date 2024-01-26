@@ -8,7 +8,6 @@ const getAuth = async (req, res, next) => {
         headers: { 'Authorization': 'Basic ' + Buffer.from(`${req.body.applicationKeyId}:${req.body.applicationKey}`).toString('base64') },
         data: {}
     }).then(response => {
-        console.log(response.apiInfo.storageApi.bucketId);
         requestAuth({
             url: `${response.apiInfo.storageApi.apiUrl}/b2api/v3/b2_get_upload_url`,
             method: 'get',

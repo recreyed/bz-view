@@ -2,7 +2,6 @@
 const { requestAuth } = require(process.cwd() + "/common/axios")
 
 const getImgList = async (req, res, next) => {
-    console.log(req);
     requestAuth({
         url: `${req.body.apiUrl}/b2api/v3/b2_list_file_names`,
         method: 'get',
