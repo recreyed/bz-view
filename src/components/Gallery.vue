@@ -39,7 +39,9 @@ const getImgList = () => {
         spinLoading.value = true
         s3Imglist({ bucketId: JSON.parse(bucketInfo).apiInfo.storageApi.bucketId, apiUrl: JSON.parse(bucketInfo).apiInfo.storageApi.apiUrl }).then((res: any) => {
             if (res) {
-                imgList.value = res.data.files
+                imgList.value = res.data.files.sort((a:any,b:any)=>{
+                    return b.uploadTimestamp - a.uploadTimestamp
+                })
             } else {
                 message.error(res.message)
             }
