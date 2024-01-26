@@ -48,6 +48,6 @@ app.use(function (err, req, res, next) {
 app.listen(3131,()=>{
   console.log('服务器启动成功')
 })
-// key
-// K004h8lJwbUdsl
-// 9JTUHvLASiwMO2f3w
+// keyID:0046936908420cb0000000011
+// keyName:recreyed
+// applicationKey:K004SmEGGnr4ogN4GUbNGo9Xa8qJO3g

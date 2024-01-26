@@ -8,11 +8,12 @@ const getAuth = async (req, res, next) => {
         headers: { 'Authorization': 'Basic ' + Buffer.from(`${req.body.applicationKeyId}:${req.body.applicationKey}`).toString('base64') },
         data: {}
     }).then(response => {
+        console.log(response.apiInfo.storageApi.bucketId);
         requestAuth({
-            url: `${response.apiUrl}/b2api/v3/b2_get_upload_url`,
-            method: 'post',
+            url: `${response.apiInfo.storageApi.apiUrl}/b2api/v3/b2_get_upload_url`,
+            method: 'get',
             headers: { 'Authorization': response.authorizationToken },
-            data: { bucketId: response.allowed.bucketId }
+            params: { bucketId: response.apiInfo.storageApi.bucketId }
         }).then(resInfo => {
             sendJson(res, 200, "登录成功！", { uploadInfo: resInfo, authInfo: response })
         })
