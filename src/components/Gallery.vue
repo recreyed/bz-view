@@ -37,7 +37,7 @@ const delList = () => {
 const getImgList = () => {
     if (bucketInfo) {
         spinLoading.value = true
-        s3Imglist({ bucketId: JSON.parse(bucketInfo).allowed.bucketId, apiUrl: JSON.parse(bucketInfo).apiUrl }).then((res: any) => {
+        s3Imglist({ bucketId: JSON.parse(bucketInfo).apiInfo.storageApi.bucketId, apiUrl: JSON.parse(bucketInfo).apiInfo.storageApi.apiUrl }).then((res: any) => {
             if (res) {
                 imgList.value = res.data.files
             } else {
@@ -83,46 +83,47 @@ getImgList()
     .pic-wrap {
         display: flex;
         flex-flow: row wrap;
-        margin: 15px 0;
+        margin-top: 15px;
         overflow: auto;
-        max-height: calc(100vh - 244px);
+        max-height: calc(100vh - 165px);
 
-        ::v-deep .gap-wrap {
+        .gap-wrap {
             width: 100%;
 
             &>div {
                 width: 13%;
             }
+
+            .pic-item-wrap {
+                width: 200px;
+                position: relative;
+                border: 1px solid #d8e3e7;
+                border-radius: 10px;
+                overflow: hidden;
+                line-height: 0;
+                border-top-left-radius: 3px;
+
+                .pic-check {
+                    position: absolute;
+                    padding: 15px;
+                    top: -18px;
+                    left: -15px;
+                    z-index: 9;
+                }
+            }
         }
 
-        ::v-deep .image-item {
+        .image-item {
             width: 100%;
             padding-bottom: 60%;
             height: 0;
             position: relative;
 
-            img {
+            :deep(img) {
                 position: absolute;
                 width: 100% !important;
                 height: 100% !important;
                 object-fit: cover !important;
-            }
-        }
-
-        .pic-item-wrap {
-            position: relative;
-            border: 1px solid #d8e3e7;
-            border-radius: 10px;
-            overflow: hidden;
-            line-height: 0;
-            border-top-left-radius: 3px;
-
-            .pic-check {
-                position: absolute;
-                padding: 15px;
-                top: -18px;
-                left: -15px;
-                z-index: 9;
             }
         }
     }
@@ -133,7 +134,7 @@ getImgList()
         margin: 20px 25px;
     }
 
-    ::v-deep.gap-wrap>div {
+    .gap-wrap>div {
         width: calc(50% - 12px) !important;
     }
 }
